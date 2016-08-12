@@ -99,8 +99,11 @@ var PDFThumbnailViewer = (function PDFThumbnailViewerClosure() {
         var first = visibleThumbs.first.id;
         // Account for only one thumbnail being visible.
         var last = (numVisibleThumbs > 1 ? visibleThumbs.last.id : first);
-        if (page <= first || page >= last) {
-          scrollIntoView(thumbnail, { top: THUMBNAIL_SCROLL_MARGIN });
+        if ((this.container.scrollHeight > this.container.clientHeight) &&
+            (page <= first || page >= last)) {
+            scrollIntoView(anchor, {
+                top: THUMBNAIL_SCROLL_MARGIN
+            });
         }
       }
     },
